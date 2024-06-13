@@ -1,6 +1,7 @@
 import React from "react";
 
 const List = (props) => {
+  const handlerCheckbox = () => {};
   return (
     <div
       className={` ${
@@ -11,9 +12,10 @@ const List = (props) => {
         <input
           type="checkbox"
           checked={props.isDone}
+          onChange={handlerCheckbox}
           className="list-checkbox w-4 h-4 accent-zinc-700"
         />
-        <label className="list-text" htmlFor>
+        <label className="list-text">
           {props.job}
         </label>
       </div>

@@ -1,16 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
-const ListCreateForm = () => {
+const ListCreateForm = (props) => {
+  const [text, setText] = useState("");
+
+  const handlerTextInput = (event) => {
+    setText(event.target.value);
+  };
+
+  const handlerAddBtn = () => {
+    props.addTask(text);
+    setText("");
+  };
+
   return (
-    <form action="#" id="createListForm" className="mb-5">
+    <div action="#" id="createListForm" className="mb-5">
       <div className="flex justify-between">
         <input
           name="text-input"
           type="text"
+          value={text}
+          onChange={handlerTextInput}
           required
           className="flex-grow p-2 border-2 border-zinc-700"
         />
-        <button id="addBtn" className="bg-zinc-700 p-2 text-white">
+        <button
+          id="addBtn"
+          onClick={handlerAddBtn}
+          className="bg-zinc-700 p-2 text-white"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -27,7 +44,7 @@ const ListCreateForm = () => {
           </svg>
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 

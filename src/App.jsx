@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Heading from "./Heading";
 import ListCreateForm from "./ListCreateForm";
 import ListGroup from "./ListGroup";
 import ListStatus from "./ListStatus";
 
 const App = () => {
-  const tasks = [
+  const [tasks, setTask] = useState([
     {
       id: 1,
       job: "Read Js Book",
@@ -26,12 +26,21 @@ const App = () => {
       job: "Prepare For Interview",
       isDone: false,
     },
-  ];
+  ]);
+
+  const addTask = (job) => {
+    const newTask = {
+      id: Date.now(),
+      job,
+      isDone: false,
+    };
+    setTask([...tasks, newTask]);
+  };
 
   return (
     <div className=" border mx-auto mt-10 max-w-[500px] p-5">
       <Heading />
-      <ListCreateForm />
+      <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
       <ListGroup tasks={tasks} />
     </div>
