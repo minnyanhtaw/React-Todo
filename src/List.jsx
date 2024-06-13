@@ -6,10 +6,16 @@ const List = (props) => {
     props.checkTask(props.id);
   };
 
+  const handlerDelBtn = () => {
+    if (confirm("Are you sure to delete")) {
+      props.deleteTask(props.id);
+    }
+  };
+
   return (
     <div
       className={` ${
-        props.isDone && "opacity-40"
+        props.isDone && " pointer-events-none opacity-40"
       } list animate__animated animate__bounceIn group overflow-hidden flex justify-between border-2 border-zinc-700 p-3`}
     >
       <div className="flex items-center gap-2">
@@ -40,7 +46,10 @@ const List = (props) => {
             />
           </svg>
         </button>
-        <button className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">
+        <button
+          onClick={handlerDelBtn}
+          className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
