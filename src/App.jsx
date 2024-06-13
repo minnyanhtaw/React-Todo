@@ -31,10 +31,21 @@ const App = () => {
   const addTask = (job) => {
     const newTask = {
       id: Date.now(),
-      job,
+      job: job,
       isDone: false,
     };
     setTask([...tasks, newTask]);
+  };
+
+  const editTask = (newJob, id) => {
+    setTask(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.job = newJob;
+        }
+        return task;
+      })
+    );
   };
 
   const checkTask = (id) => {
@@ -57,7 +68,12 @@ const App = () => {
       <Heading />
       <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
-      <ListGroup deleteTask={deleteTask} checkTask={checkTask} tasks={tasks} />
+      <ListGroup
+        editTask={editTask}
+        deleteTask={deleteTask}
+        checkTask={checkTask}
+        tasks={tasks}
+      />
     </div>
   );
 };
