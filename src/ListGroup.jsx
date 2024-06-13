@@ -8,7 +8,13 @@ const ListGroup = (props) => {
       <EmptyList />
 
       {props.tasks.map((task) => (
-        <List key={task.id} job={task.job} isDone={task.isDone} />
+        <List
+          checkTask={props.checkTask}
+          key={task.id}
+          job={task.job}
+          isDone={task.isDone}
+          id={task.id}
+        />
       ))}
     </div>
   );

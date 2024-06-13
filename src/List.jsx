@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 
 const List = (props) => {
-  const handlerCheckbox = () => {};
+  // const [check, setCheck] = useState();
+  const handlerCheckbox = () => {
+    props.checkTask(props.id);
+  };
+
   return (
     <div
       className={` ${
@@ -15,7 +19,7 @@ const List = (props) => {
           onChange={handlerCheckbox}
           className="list-checkbox w-4 h-4 accent-zinc-700"
         />
-        <label className="list-text">
+        <label className={`${props.isDone && `line-through`}`}>
           {props.job}
         </label>
       </div>
