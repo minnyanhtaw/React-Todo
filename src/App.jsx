@@ -48,12 +48,16 @@ const App = () => {
     setTask([...tasks, newTask]);
   };
 
+  const deleteTask = (id) => {
+    setTask(tasks.filter((task) => task.id !== id));
+  };
+
   return (
     <div className=" border mx-auto mt-10 max-w-[500px] p-5">
       <Heading />
       <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
-      <ListGroup tasks={tasks} checkTask={checkTask} />
+      <ListGroup tasks={tasks} checkTask={checkTask} deleteTask={deleteTask} />
     </div>
   );
 };

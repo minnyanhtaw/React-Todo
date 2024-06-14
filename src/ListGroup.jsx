@@ -10,6 +10,7 @@ const ListGroup = (props) => {
 
       {props.tasks.map((task) => (
         <List
+          deleteTask={props.deleteTask}
           checkTask={props.checkTask}
           job={task.job}
           isDone={task.isDone}

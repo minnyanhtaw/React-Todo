@@ -1,10 +1,17 @@
 import React from "react";
 
 const List = (props) => {
+  const handlerDelBtn = () => {
+    if (confirm("Are You Sure to Delete?")) {
+      props.deleteTask(props.id);
+    }
+  };
+
   const handlerCheckbox = () => {
     props.checkTask(props.id);
     // console.log(props.id);
   };
+
   return (
     <div
       className={` ${
@@ -37,7 +44,10 @@ const List = (props) => {
             />
           </svg>
         </button>
-        <button className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">
+        <button
+          onClick={handlerDelBtn}
+          className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
