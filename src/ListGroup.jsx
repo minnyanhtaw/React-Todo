@@ -7,17 +7,17 @@ const ListGroup = (props) => {
     <div id="listGroup" className="flex flex-col gap-3">
       <EmptyList />
 
-      {props.tasks.map((task) => (
-        <List
-          editTask={props.editTask}
-          checkTask={props.checkTask}
-          deleteTask={props.deleteTask}
+      {/* {tasks.map((task) => (
+        <div
+          className={` ${task.isDone && "opacity-40" } border p-2 bg-zinc-400`}
           key={task.id}
-          job={task.job}
-          isDone={task.isDone}
-          id={task.id}
-        />
-      ))}
+        >
+          <p>
+            {task.id} | {task.isDone ? "Done" : "Not Yet"}
+          </p>
+          <p>{task.job}</p>
+        </div>
+      ))} */}
     </div>
   );
 };
