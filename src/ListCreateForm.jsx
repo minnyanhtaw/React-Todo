@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import toast from "react-hot-toast";
 
 const ListCreateForm = (props) => {
   const [text, setText] = useState("");
@@ -10,6 +11,15 @@ const ListCreateForm = (props) => {
   const handlerAddBtn = () => {
     props.addTask(text);
     setText("");
+    toast.success("Add List Successfully", { position: "bottom-left" });
+  };
+
+  const handlerEnter = (event) => {
+    if (event.key == "Enter") {
+      props.addTask(text);
+      setText("");
+      toast.success("Add List Successfully", { position: "bottom-left" });
+    }
   };
 
   return (
@@ -20,6 +30,7 @@ const ListCreateForm = (props) => {
           type="text"
           value={text}
           onChange={handlerTextInput}
+          onKeyUp={handlerEnter}
           required
           className="flex-grow p-2 border-2 border-zinc-700"
         />

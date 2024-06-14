@@ -3,6 +3,8 @@ import Heading from "./Heading";
 import ListCreateForm from "./ListCreateForm";
 import ListGroup from "./ListGroup";
 import ListStatus from "./ListStatus";
+import { Toaster } from "react-hot-toast";
+
 
 const App = () => {
   const [tasks, setTask] = useState([
@@ -74,6 +76,7 @@ const App = () => {
         deleteTask={deleteTask}
         editTask={editTask}
       />
+      <Toaster />
     </div>
   );
 };
