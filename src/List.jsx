@@ -1,21 +1,24 @@
 import React from "react";
 
 const List = (props) => {
+  const handlerCheckbox = () => {
+    props.checkTask(props.id);
+    // console.log(props.id);
+  };
   return (
     <div
       className={` ${
-        props.isDone && "opacity-40"
+        props.isDone && " pointer-events-none opacity-40"
       } list animate__animated animate__bounceIn group overflow-hidden flex justify-between border-2 border-zinc-700 p-3`}
     >
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
           checked={props.isDone}
+          onChange={handlerCheckbox}
           className="list-checkbox w-4 h-4 accent-zinc-700"
         />
-        <label className="list-text" htmlFor>
-          {props.job}
-        </label>
+        <label className="list-text">{props.job}</label>
       </div>
       <div className="flex items-center gap-3">
         <button className="list-edit-btn opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">

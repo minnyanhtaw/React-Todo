@@ -28,6 +28,17 @@ const App = () => {
     },
   ]);
 
+  const checkTask = (id) => {
+    setTask(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.isDone = !task.isDone;
+        }
+        return task;
+      })
+    );
+  };
+
   const addTask = (job) => {
     const newTask = {
       id: Date.now(),
@@ -42,7 +53,7 @@ const App = () => {
       <Heading />
       <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
-      <ListGroup tasks={tasks} />
+      <ListGroup tasks={tasks} checkTask={checkTask} />
     </div>
   );
 };
