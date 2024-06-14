@@ -1,24 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 
 const List = (props) => {
+  const [isEdit, setEdit] = useState(false);
+  const [newJob, setNewJob] = useState(props.job);
+
+  const handlerCheckbox = () => {
+    props.checkTask(props.id);
+    console.log(props.id);
+  };
+
+  const handlerDelBtn = () => {
+    if (confirm("Are you sure to delete")) {
+      props.deleteTask(props.id);
+    }
+  };
+
+  const handlerEditBtn = () => {
+    setEdit(true);
+  };
+
+  const handlerNewJobInput = (event) => {
+    setNewJob(event.target.value);
+  };
+
+  const handlerNewJobInputUpdate = (event) => {
+    if (event.key === "Enter") {
+      console.log("update");
+      props.editTask(newJob, props.id);
+      setEdit(false);
+    }
+  };
+
   return (
     <div
       className={` ${
-        props.isDone && "opacity-40"
+        props.isDone && " pointer-events-none opacity-40"
       } list animate__animated animate__bounceIn group overflow-hidden flex justify-between border-2 border-zinc-700 p-3`}
     >
       <div className="flex items-center gap-2">
         <input
           type="checkbox"
           checked={props.isDone}
+          onChange={handlerCheckbox}
+          disabled={isEdit}
           className="list-checkbox w-4 h-4 accent-zinc-700"
         />
-        <label className="list-text" htmlFor>
-          {props.job}
-        </label>
+
+        {isEdit ? (
+          <input
+            type="text"
+            value={newJob}
+            onChange={handlerNewJobInput}
+            onKeyUp={handlerNewJobInputUpdate}
+            className=" border border-black px-2 py-1 text-xs"
+          />
+        ) : (
+          <label className={`${props.isDone && `line-through`}`}>
+            {props.job}
+          </label>
+        )}
       </div>
-      <div className="flex items-center gap-3">
-        <button className="list-edit-btn opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">
+
+      <div onClick={handlerEditBtn} className="flex items-center gap-3">
+        <button
+          onClick={handlerEditBtn}
+          className="list-edit-btn opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -34,7 +81,10 @@ const List = (props) => {
             />
           </svg>
         </button>
-        <button className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">
+        <button
+          onClick={handlerDelBtn}
+          className="list-del-btn translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
