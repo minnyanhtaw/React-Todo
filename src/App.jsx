@@ -28,10 +28,19 @@ const App = () => {
     },
   ]);
 
+  const addTask = (job) => {
+    const newTask = {
+      id: Date.now(),
+      job: job,
+      isDone: false,
+    };
+    setTask([...tasks, newTask]);
+  };
+
   return (
     <div className=" border mx-auto mt-10 max-w-[500px] p-5">
       <Heading />
-      <ListCreateForm />
+      <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
       <ListGroup tasks={tasks} />
     </div>
