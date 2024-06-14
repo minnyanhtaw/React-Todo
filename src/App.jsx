@@ -32,7 +32,7 @@ const App = () => {
     <div className=" border mx-auto mt-10 max-w-[500px] p-5">
       <Heading />
       <ListCreateForm />
-      <ListStatus />
+      <ListStatus tasks={tasks} />
       <ListGroup tasks={tasks} />
     </div>
   );
