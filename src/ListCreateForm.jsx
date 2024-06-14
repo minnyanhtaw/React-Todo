@@ -2,7 +2,7 @@ import React from "react";
 
 const ListCreateForm = () => {
   return (
-    <form action="#" id="createListForm" className="mb-5">
+    <div id="createListForm" className="mb-5">
       <div className="flex justify-between">
         <input
           name="text-input"
@@ -27,7 +27,7 @@ const ListCreateForm = () => {
           </svg>
         </button>
       </div>
-    </form>
+    </div>
   );
 };
 
