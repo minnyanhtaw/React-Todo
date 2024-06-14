@@ -9,12 +9,12 @@ const App = () => {
     {
       id: 1,
       job: "Read Js Book",
-      isDone: true,
+      isDone: false,
     },
     {
       id: 2,
       job: "Read Documentation",
-      isDone: true,
+      isDone: false,
     },
     {
       id: 3,
@@ -52,12 +52,28 @@ const App = () => {
     setTask(tasks.filter((task) => task.id !== id));
   };
 
+  const editTask = (newJob, id) => {
+    setTask(
+      tasks.map((task) => {
+        if (task.id === id) {
+          task.job = newJob;
+        }
+        return task;
+      })
+    );
+  };
+
   return (
     <div className=" border mx-auto mt-10 max-w-[500px] p-5">
       <Heading />
       <ListCreateForm addTask={addTask} />
       <ListStatus tasks={tasks} />
-      <ListGroup tasks={tasks} checkTask={checkTask} deleteTask={deleteTask} />
+      <ListGroup
+        tasks={tasks}
+        checkTask={checkTask}
+        deleteTask={deleteTask}
+        editTask={editTask}
+      />
     </div>
   );
 };

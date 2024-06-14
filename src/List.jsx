@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 
 const List = (props) => {
+  const [isEdit, setIsEdit] = useState(false);
+  const [newJob, setNewJob] = useState(props.job);
+
+  const handlerNewJobInput = (event) => {
+    setNewJob(event.target.value);
+  };
+
+  const handlerNewJobInputUpdate = (event) => {
+    if (event.key === "Enter") {
+      props.editTask(newJob, props.id);
+      setIsEdit(false);
+    }
+  };
+
   const handlerDelBtn = () => {
     if (confirm("Are You Sure to Delete?")) {
       props.deleteTask(props.id);
@@ -10,6 +24,10 @@ const List = (props) => {
   const handlerCheckbox = () => {
     props.checkTask(props.id);
     // console.log(props.id);
+  };
+
+  const handlerEditBtn = () => {
+    setIsEdit(true);
   };
 
   return (
@@ -25,10 +43,25 @@ const List = (props) => {
           onChange={handlerCheckbox}
           className="list-checkbox w-4 h-4 accent-zinc-700"
         />
-        <label className="list-text">{props.job}</label>
+
+        {isEdit ? (
+          <input
+            type="text"
+            value={newJob}
+            onChange={handlerNewJobInput}
+            onKeyUp={handlerNewJobInputUpdate}
+            className=" border border-black text-xs py-1 px-2"
+          />
+        ) : (
+          <p className="list-text">{props.job}</p>
+        )}
       </div>
+
       <div className="flex items-center gap-3">
-        <button className="list-edit-btn opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2">
+        <button
+          onClick={handlerEditBtn}
+          className="list-edit-btn opacity-0 translate-x-full group-hover:opacity-100 group-hover:translate-x-0 duration-300 border-2 border-zinc-700 p-2"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
